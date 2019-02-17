@@ -1,0 +1,24 @@
+{
+  "name": "pickafight",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "watch": "node run watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krtcotmo2/pickAFight.git"
+  },
+  "author": "Kurt Cooney",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krtcotmo2/pickAFight/issues"
+  },
+  "homepage": "https://github.com/krtcotmo2/pickAFight#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
