@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+     <link rel="stylesheet" href="../assets/css/style.css" />
+     <link rel="stylesheet"
+          href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+</head>
+
+<body>
+     <div class="container my-5">
+          <form>
+               <div class="form-group">
+                    <label for="tboxName">Name/Idnetity</label>
+                    <input type="text" class="form-control" id="tboxName" aria-describedby="emailHelp"
+                         placeholder="Steve Rogers" required>
+               </div>
+               <div class="form-group">
+                    <label for="tboxAlias">Alias/Hero Name</label>
+                    <input type="text" class="form-control" id="tboxAlias" aria-describedby="emailHelp"
+                         placeholder="Captain America" required>
+               </div>
+               <div class="form-group">
+                    <label for="tboxAlias">Hero or Villan</label>
+                    <select class="form-control" id="cbxSide">
+                         <option value="0"></option>
+                         <option value="1">Hero</option>
+                         <option value="2">Villian</option>
+                    </select>
+               </div>
+               <div class="form-group">
+                    <label for="tboxAlias">Durability</label>
+                    <select  class="form-control" id="cboxDur">
+                         <option value="0"></option>
+                         <option value="1">Weak</option>
+                         <option value="2">Normal</option>
+                         <option value="3">Enhanced</option>
+                         <option value="4">Regenerative</option>
+                         <option value="5">Bulletproof</option>
+                         <option value="6">Superhuman</option>
+                         <option value="7">Virtually indestructible</option>
+                    </select>
+               </div>
+               <div class="form-group">
+                    <label for="tboxAlias">Energy Projection</label>
+                    <select class="form-control" id="cboxEnergy">
+                         <option value="0"></option>
+                         <option value="1">None</option>
+                         <option value="2">Ability to discharge energy on contact</option>
+                         <option value="3">Short range, short duration, single energy type</option>
+                         <option value="4">Medium range, duration, single energy type</option>
+                         <option value="5">Long range, long duration, single energy type</option>
+                         <option value="6">Able to discharge multiple forms of energy</option>
+                         <option value="7">Virtually unlimited command of all forms of energy</option>
+                    </select>
+               </div>
+               <div class="form-group">
+                    <label for="tboxAlias">Fighting Ability</label>
+                    <select class="form-control" id="cboxFight">
+                         <option value="0"></option>
+                         <option value="1">Poor</option>
+                         <option value="2">Normal</option>
+                         <option value="3">Some training</option>
+                         <option value="4">Experienced fighter</option>
+                         <option value="5">Master of a single form of combat</option>
+                         <option value="6">Master of several forms of combat</option>
+                         <option value="7">Master of all forms of combat</option>
+                    </select>
+               </div>
+               <div class="form-group">
+                    <label for="tboxAlias">Intelligence</label>
+                    <select class="form-control" id="cboxInt">
+                         <option value="0"></option>
+                         <option value="1">Slow/Impaired</option>
+                         <option value="2">Normal</option>
+                         <option value="3">Learned</option>
+                         <option value="4">Gifted</option>
+                         <option value="5">Genius</option>
+                         <option value="6">Super-Genius</option>
+                         <option value="7">Omniscient</option>
+                    </select>
+               </div>
+               <div class="form-group">
+                    <label for="tboxAlias">Speed</label>
+                    <select class="form-control" id="cboxSpeed">
+                         <option value="0"></option>
+                         <option value="1">Below normal</option>
+                         <option value="2">Normal</option>
+                         <option value="3">Superhuman</option>
+                         <option value="4">Speed of sound: Mach-1</option>
+                         <option value="5">Supersonic: Mach-2 through Orbital Velocity</option>
+                         <option value="6">Speed of light: 186,000 miles per second</option>
+                         <option value="7">Warp speed: transcending light speed</option>
+                    </select>
+               </div>
+               <div class="form-group">
+                    <label for="tboxAlias">Strength</label>
+                    <select class="form-control" id="cboxStr">
+                         <option value="0"></option>
+                         <option value="1">Weak: cannot lift own body weight</option>
+                         <option value="2">Normal: able to lift own body weight</option>
+                         <option value="3">Peak Human: able to lift twice own body weight</option>
+                         <option value="4">Superhuman: 800 lbs-25 ton range</option>
+                         <option value="5">Superhuman: 25-75 ton range</option>
+                         <option value="6">Superhuman: 75-100 ton range</option>
+                         <option value="7">Incalculable: in excess of 100 tons</option>
+                    </select>
+               </div>
+               <div class="form-group">
+                    <label for="tboxAlias">Reliance on Tools</label>
+                    <select class="form-control" id="cboxGizmo">
+                         <option value="0"></option>
+                         <option value="1">None: Raw/intate talent does not need outside help</option>
+                         <option value="2">Minimal: May use a single weapon/tool but is effective without it</option>
+                         <option value="3">Marginal: May use any number of weapons/tools but usually uses one</option>
+                         <option value="4">Dependent: Constantly uses a variety of tools</option>
+                         <option value="5">Largely Dependent: Without weapons/tools, their vaiability is greatly diminished</option>
+                         <option value="6">Fully Dependent: Would not be able to perfom with out tools/weapons</option>
+                    </select>
+               </div>
+               <div class="form-group">
+                    <label for="tboxAlias">Image of Hero</label>
+                    <input type="text" class="form-control" id="tboxFImg" aria-describedby="emailHelp"
+                         placeholder="">
+               </div>
+               <div class="form-group">
+                    <label for="tboxAlias">Profile Image of Hero</label>
+                    <input type="text" class="form-control" id="tboxPImg" aria-describedby="emailHelp"
+                         placeholder="">
+               </div>
+               <div class="form-group">
+                    <label for="tboxAlias">Profile is Facing Right or Left?</label>
+                    <select class="form-control" id="cboxProf">
+                         <option value="0"></option>
+                         <option value="1">Right</option>
+                         <option value="2">Left</option>
+                    </select>
+               </div>
+               <button id="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    
+                    <div class="modal-body">
+                         Character Created
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                         <button id="btnAnotherHero" type="button" class="btn btn-secondary">Create Another</button>
+                         <button id="btnHome" type="button" class="btn btn-primary">Return Home</button>
+                    </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+     <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous'></script>
+     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+     <script>
+          $("#btnSubmit").on("click", function (evt) {
+               evt.preventDefault();
+          
+               $.post("/api/addhero",
+               {
+                    "name": $("#tboxName").val().trim(),
+                    "alias": $("#tboxAlias").val().trim(), 
+                    "side": $("#cbxSide").val().trim(),
+                    "profImg": $("#tboxPImg").val().trim(),
+                    "profDir": $("#cboxProf").val().trim(),
+                    "img": $("#tboxFImg").val().trim(),
+                    "skill": [
+                         {
+                              "durability": $("#cboxDur").val(),
+                              "energy": $("#cboxEnergy").val(),
+                              "fighting":$("#cboxFight").val(),
+                              "intel":$("#cboxInt").val(),
+                              "speed":$("#cboxSpeed").val(),
+                              "strength":$("#cboxStr").val(),
+                              "gizmos":$("#cboxGizmo").val()
+                         }
+                    ]
+               },
+               function(data, status){
+                    if (data == true) {
+                         $('#myModal').modal("show")
+                    }
+               });
+          });
+        
+          $("#btnHome").on("click",function(evt){              
+               evt.preventDefault();
+               window.location.href= "/";
+               
+          });
+          $("#btnAnotherHero").on("click",function(evt){
+               evt.preventDefault();
+               $("select").val("0");
+               $("input").val("");
+               $(document).scrollTop(0);
+               $('#myModal').modal("hide");
+          });
+     </script>
+</body>
+
+</html>

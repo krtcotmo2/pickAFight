@@ -7,8 +7,12 @@ let PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/", express.static(__dirname + "/"));
-let routes = require('./routing/htmlRoutes.js');
-app.use("/", routes);
+
+
+let htmRoutes = require('./routing/htmlRoutes.js');
+app.use("/", htmRoutes);
+let apiRoutes = require('./routing/apiRoutes.js');
+app.use("/", apiRoutes);
 
 
 

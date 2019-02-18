@@ -16,4 +16,6 @@ let players = [
           profDir:1,
           img:"url to image"
      }
-]
+];
+
+module.exports = players;

@@ -9,6 +9,9 @@ htmRouter.get("/", function(req, res){
 htmRouter.get("/pickafight", function(req, res){
      res.sendFile(path.join(__dirname, "../public/pickAFight.html"));
 });
+htmRouter.get("/addHero", function(req, res){
+     res.sendFile(path.join(__dirname, "../public/addhero.html"));
+});
 
 
 
