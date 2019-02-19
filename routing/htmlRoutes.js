@@ -13,7 +13,4 @@ htmRouter.get("/addHero", function(req, res){
      res.sendFile(path.join(__dirname, "../public/addhero.html"));
 });
 
-
-
-
 module.exports = htmRouter;
