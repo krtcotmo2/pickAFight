@@ -56,9 +56,11 @@
      </div>
      <div class="container my-2 d-flex justify-content-around">
           <div class="col col-5 my-2 p-3">
-               <div class="charts player1">
+               <div class="charts player1 hidden">
                     <div class="dur" id="dur1" style="width: calc(100% - 2px); margin:0 auto;"></div>
                     <div class="dur" id="energy1" style="width: calc(100% - 2px); margin:0 auto;"></div>
+                    <div class="dur" id="fight1" style="width: calc(100% - 2px); margin:0 auto;"></div>
+                    <div class="dur" id="intel1" style="width: calc(100% - 2px); margin:0 auto;"></div>
                </div>
                <div class="my-2 charScreen hidden">
                     <p>
@@ -70,7 +72,7 @@
                </div>
           </div>
           <div class="col col-5 my-2 p-3">
-               <div class="charts player2">
+               <div class="charts player2 hidden">
                     <div class="dur" style="width: 80%; margin:0 auto;"></div>
                </div>
                <div class="my-2 charScreen2 hidden">
@@ -103,6 +105,15 @@
                          $("#cboxhero").append(anOpt);
                     });
                });
+
+               $(".col").mouseover(function(){
+                    $(".player1").removeClass("hidden");
+                    $(".player2").removeClass("hidden");
+               })
+               $(".col").mouseout(function(){
+                    $(".player1").addClass("hidden");
+                    $(".player2").addClass("hidden");
+               })
           });
 
           $("#cboxhero").on("change", function(evt){
@@ -174,6 +185,44 @@
                     ['', 7-player.skill.energy],
                ]);
                chart = new google.visualization.PieChart(document.getElementById('energy1'));
+               chart.draw(data, options);
+
+               options = {
+                    title: 'Combat Skills',
+                    fontSize: "16",
+                    pieHole: 0.4,
+                    pieSliceText: 'none',
+                    legend: 'none',slices: {
+                         0: { color: '#3366cc' },
+                         1: { color: 'transparent' }
+                    },
+                    pieSliceBorderColor : "#ccc"
+               }
+               data = google.visualization.arrayToDataTable([
+                    ['', ''],
+                    ['', player.skill.fighting],
+                    ['', 7-player.skill.fighting],
+               ]);
+               chart = new google.visualization.PieChart(document.getElementById('fight1'));
+               chart.draw(data, options);
+
+               options = {
+                    title: 'Intelligence',
+                    fontSize: "16",
+                    pieHole: 0.4,
+                    pieSliceText: 'none',
+                    legend: 'none',slices: {
+                         0: { color: '#3366cc' },
+                         1: { color: 'transparent' }
+                    },
+                    pieSliceBorderColor : "#ccc"
+               }
+               data = google.visualization.arrayToDataTable([
+                    ['', ''],
+                    ['', player.skill.intel],
+                    ['', 7-player.skill.intel],
+               ]);
+               chart = new google.visualization.PieChart(document.getElementById('intel1'));
                chart.draw(data, options);
           }
      </script>
