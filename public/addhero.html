@@ -116,12 +116,12 @@
                     <label for="tboxAlias">Reliance on Tools</label>
                     <select class="form-control" id="cboxGizmo">
                          <option value="0"></option>
-                         <option value="1">None: Raw/intate talent does not need outside help</option>
-                         <option value="2">Minimal: May use a single weapon/tool but is effective without it</option>
-                         <option value="3">Marginal: May use any number of weapons/tools but usually uses one</option>
-                         <option value="4">Dependent: Constantly uses a variety of tools</option>
-                         <option value="5">Largely Dependent: Without weapons/tools, their vaiability is greatly diminished</option>
-                         <option value="6">Fully Dependent: Would not be able to perfom with out tools/weapons</option>
+                         <option value="6">None: Raw/intate talent does not need outside help</option>
+                         <option value="5">Minimal: May use a single weapon/tool but is effective without it</option>
+                         <option value="4">Marginal: May use any number of weapons/tools but usually uses one</option>
+                         <option value="3">Dependent: Constantly uses a variety of tools</option>
+                         <option value="2">Largely Dependent: Without weapons/tools, their vaiability is greatly diminished</option>
+                         <option value="1">Fully Dependent: Would not be able to perfom with out tools/weapons</option>
                     </select>
                </div>
                <div class="form-group">
@@ -145,7 +145,7 @@
                <button id="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
           </form>
 
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                     
@@ -169,7 +169,6 @@
      <script>
           $("#btnSubmit").on("click", function (evt) {
                evt.preventDefault();
-          
                $.post("/api/addhero",
                {
                     "name": $("#tboxName").val().trim(),
@@ -178,7 +177,7 @@
                     "profImg": $("#tboxPImg").val().trim(),
                     "profDir": $("#cboxProf").val().trim(),
                     "img": $("#tboxFImg").val().trim(),
-                    "skill": [
+                    "skill": 
                          {
                               "durability": $("#cboxDur").val(),
                               "energy": $("#cboxEnergy").val(),
@@ -187,13 +186,12 @@
                               "speed":$("#cboxSpeed").val(),
                               "strength":$("#cboxStr").val(),
                               "gizmos":$("#cboxGizmo").val()
-                         }
-                    ]
+                         }                    
                },
                function(data, status){
-                    if (data == true) {
-                         $('#myModal').modal("show")
-                    }
+                    $(".modal-body").text(data.reason)
+                    $('#myModal').modal("show")
+                    
                });
           });
         

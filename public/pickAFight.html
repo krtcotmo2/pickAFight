@@ -10,18 +10,172 @@
           .col{
                min-height:200px;
                border:1px solid #ccc;
-
+          }
+          .hidden{
+               display:none;
+          }
+          .playerImg, .playerImg2{
+               width:100%;
+          }
+          .charts{
+               position: absolute;
+               width:100%;
+               top:0px;
+               left:0px;
+               background:rgba(255,255,255,0.4);
+          }
+          .col{
+               position: relative;
+          }
+          .dur rect{
+               fill-opacity: 0.8;
+          }
+          g rect{
+               fill-opacity: 0 !important;
+               text-align: center !important;
           }
      </style>
 </head>
 <body>
-     <div class="container my-5 d-flex justify-content-around">
-          <div class="col col-5"></div>
-          <div class="col col-5"></div>
+     <div class="container my-2">
+          <div class="row col-11 mx-auto">
+               <h3>Choose your hero</h3>
+               <select class="form-control" id="cboxhero">
+                    <option value="0"></option>
+               </select>
+               <div class="form-check my-2 w-100">
+                    <input class="form-check-input" type="checkbox" id="chkFightAny">
+                    <label class="form-check-label" for="chkFightAny">
+                         Find closest match regardless of allegiance
+                    </label>
+               </div>
+               <div class="my-2">
+                    <button id="btnSubmit" type="submit" class="btn btn-primary">Find Opponent</button>
+               </div>
+          </div>
+     </div>
+     <div class="container my-2 d-flex justify-content-around">
+          <div class="col col-5 my-2 p-3">
+               <div class="charts player1">
+                    <div class="dur" id="dur1" style="width: calc(100% - 2px); margin:0 auto;"></div>
+                    <div class="dur" id="energy1" style="width: calc(100% - 2px); margin:0 auto;"></div>
+               </div>
+               <div class="my-2 charScreen hidden">
+                    <p>
+                         <strong>Real Name:</strong> <span class="labName"></span>
+                    </p>
+                    <p>
+                         <img class="playerImg" src=""/>
+                    </p>
+               </div>
+          </div>
+          <div class="col col-5 my-2 p-3">
+               <div class="charts player2">
+                    <div class="dur" style="width: 80%; margin:0 auto;"></div>
+               </div>
+               <div class="my-2 charScreen2 hidden">
+                    <p><strong>Real Name:</strong> <span class="labName2"></span></p>
+                    <p><img class="playerImg2" src=""/></p>
+               </div>
+          </div>
      </div>
      <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous'></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+     <script>
+          let charArray=[];
+          google.charts.load('current', {'packages':['corechart']});
+          
+          $(document).ready(function(){
+               let getUrl = "/api/getHeroes";
+               $.ajax({
+                    url: getUrl,
+                    method: "GET"
+               }).then(function(response) {
+                    let cntr = 1;
+                    charArray = response;
+                    charArray.forEach(element => {
+                         let anOpt = $("<option>");
+                         anOpt.val(cntr);
+                         anOpt.text(element.alias)
+                         cntr++;
+                         $("#cboxhero").append(anOpt);
+                    });
+               });
+          });
 
+          $("#cboxhero").on("change", function(evt){
+               if(this.value=="0"){
+                    $(".charScreen").addClass("hidden");
+                    return;
+               }
+               let char = charArray.find( o => {
+                   return o.alias == $("#cboxhero option:selected").text()
+               });
+               $(".labName").text(char.name);
+               $(".playerImg").attr("src","");
+               $(".playerImg").attr("src",char.img);
+               $(".charScreen").removeClass("hidden");
+               $(".charScreen2").addClass("hidden");
+          })
+     
+          $("#btnSubmit").on("click", function(){
+               let getUrl = `/api/getOpponent/${$("#cboxhero option:selected").text()}&${$(".labName").text()}&${$("#chkFightAny").is(':checked')}`;
+               console.log(getUrl)
+               $.ajax({
+                    url: getUrl,
+                    method: "GET"
+               }).then(function(response) {
+                    $(".labName2").text(response.curOpp.name);
+                    $(".playerImg2").attr("src","");
+                    $(".playerImg2").attr("src",response.curOpp.img);
+                    $(".charScreen2").removeClass("hidden");
+                    popCharts(response.char, $(".player1"))
+               });
+          })
+
+          function popCharts(player, cont){
+               let durHlder = $(cont).find(".dur");
+               var options = {
+                    title: 'Durability',
+                    pieHole: 0.4,
+                    pieSliceText: 'none',
+                    fontSize: "16",
+                    legend: 'none',slices: {
+                         0: { color: '#3366cc' },
+                         1: { color: 'transparent' }
+                    },
+                    pieSliceBorderColor : "#ccc"
+
+               };
+               var data = google.visualization.arrayToDataTable([
+                    ['', ''],
+                    ['', player.skill.durability],
+                    ['', 7-player.skill.durability],
+               ]);
+               var chart = new google.visualization.PieChart(document.getElementById('dur1'));
+               chart.draw(data, options);
+
+               options = {
+                    title: 'Energy',
+                    fontSize: "16",
+                    pieHole: 0.4,
+                    pieSliceText: 'none',
+                    legend: 'none',slices: {
+                         0: { color: '#3366cc' },
+                         1: { color: 'transparent' }
+                    },
+                    pieSliceBorderColor : "#ccc"
+               }
+               data = google.visualization.arrayToDataTable([
+                    ['', ''],
+                    ['', player.skill.energy],
+                    ['', 7-player.skill.energy],
+               ]);
+               chart = new google.visualization.PieChart(document.getElementById('energy1'));
+               chart.draw(data, options);
+          }
+     </script>
 </body>
 </html>
