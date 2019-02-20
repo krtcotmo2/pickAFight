@@ -61,6 +61,9 @@
                     <div class="dur" id="energy1" style="width: calc(100% - 2px); margin:0 auto;"></div>
                     <div class="dur" id="fight1" style="width: calc(100% - 2px); margin:0 auto;"></div>
                     <div class="dur" id="intel1" style="width: calc(100% - 2px); margin:0 auto;"></div>
+                    <div class="dur" id="speed1" style="width: calc(100% - 2px); margin:0 auto;"></div>
+                    <div class="dur" id="str1" style="width: calc(100% - 2px); margin:0 auto;"></div>
+                    <div class="dur" id="gizmo1" style="width: calc(100% - 2px); margin:0 auto;"></div>
                </div>
                <div class="my-2 charScreen hidden">
                     <p>
@@ -73,7 +76,14 @@
           </div>
           <div class="col col-5 my-2 p-3">
                <div class="charts player2 hidden">
-                    <div class="dur" style="width: 80%; margin:0 auto;"></div>
+                    <div class="dur" id="dur2" style="width: calc(100% - 2px); margin:0 auto;"></div>
+                    <div class="dur" id="energy2" style="width: calc(100% - 2px); margin:0 auto;"></div>
+                    <div class="dur" id="fight2" style="width: calc(100% - 2px); margin:0 auto;"></div>
+                    <div class="dur" id="intel2" style="width: calc(100% - 2px); margin:0 auto;"></div>
+                    <div class="dur" id="speed2" style="width: calc(100% - 2px); margin:0 auto;"></div>
+                    <div class="dur" id="str2" style="width: calc(100% - 2px); margin:0 auto;"></div>
+                    <div class="dur" id="gizmo2" style="width: calc(100% - 2px); margin:0 auto;"></div>
+               
                </div>
                <div class="my-2 charScreen2 hidden">
                     <p><strong>Real Name:</strong> <span class="labName2"></span></p>
@@ -142,19 +152,21 @@
                     $(".playerImg2").attr("src","");
                     $(".playerImg2").attr("src",response.curOpp.img);
                     $(".charScreen2").removeClass("hidden");
-                    popCharts(response.char, $(".player1"))
+                    popCharts(response.char, $(".player1"));
+                    popCharts(response.curOpp, $(".player2"), true);
                });
           })
 
-          function popCharts(player, cont){
+          function popCharts(player, cont, isOpp = false){
                let durHlder = $(cont).find(".dur");
                var options = {
                     title: 'Durability',
                     pieHole: 0.4,
                     pieSliceText: 'none',
                     fontSize: "16",
-                    legend: 'none',slices: {
-                         0: { color: '#3366cc' },
+                    legend: 'none',
+                    slices: {
+                         0: { color: isOpp ? '#ff0000':'#3366cc' },
                          1: { color: 'transparent' }
                     },
                     pieSliceBorderColor : "#ccc"
@@ -165,7 +177,8 @@
                     ['', player.skill.durability],
                     ['', 7-player.skill.durability],
                ]);
-               var chart = new google.visualization.PieChart(document.getElementById('dur1'));
+               let str = isOpp == true ? "dur2" : "dur1"
+               var chart = new google.visualization.PieChart(document.getElementById(str));
                chart.draw(data, options);
 
                options = {
@@ -173,8 +186,9 @@
                     fontSize: "16",
                     pieHole: 0.4,
                     pieSliceText: 'none',
-                    legend: 'none',slices: {
-                         0: { color: '#3366cc' },
+                    legend: 'none',
+                    slices: {
+                         0: { color: isOpp ? '#ff0000':'#3366cc' },
                          1: { color: 'transparent' }
                     },
                     pieSliceBorderColor : "#ccc"
@@ -184,7 +198,8 @@
                     ['', player.skill.energy],
                     ['', 7-player.skill.energy],
                ]);
-               chart = new google.visualization.PieChart(document.getElementById('energy1'));
+               str = isOpp == true ? "energy2" : "energy1";
+               chart = new google.visualization.PieChart(document.getElementById(str));
                chart.draw(data, options);
 
                options = {
@@ -192,8 +207,9 @@
                     fontSize: "16",
                     pieHole: 0.4,
                     pieSliceText: 'none',
-                    legend: 'none',slices: {
-                         0: { color: '#3366cc' },
+                    legend: 'none',
+                    slices: {
+                         0: { color: isOpp ? '#ff0000':'#3366cc' },
                          1: { color: 'transparent' }
                     },
                     pieSliceBorderColor : "#ccc"
@@ -203,7 +219,8 @@
                     ['', player.skill.fighting],
                     ['', 7-player.skill.fighting],
                ]);
-               chart = new google.visualization.PieChart(document.getElementById('fight1'));
+               str = isOpp == true ? "fight2" : "fight1";
+               chart = new google.visualization.PieChart(document.getElementById(str));
                chart.draw(data, options);
 
                options = {
@@ -211,8 +228,9 @@
                     fontSize: "16",
                     pieHole: 0.4,
                     pieSliceText: 'none',
-                    legend: 'none',slices: {
-                         0: { color: '#3366cc' },
+                    legend: 'none',
+                    slices: {
+                         0: { color: isOpp ? '#ff0000':'#3366cc' },
                          1: { color: 'transparent' }
                     },
                     pieSliceBorderColor : "#ccc"
@@ -222,7 +240,71 @@
                     ['', player.skill.intel],
                     ['', 7-player.skill.intel],
                ]);
-               chart = new google.visualization.PieChart(document.getElementById('intel1'));
+               str = isOpp == true ? "intel2" : "intel1";
+               chart = new google.visualization.PieChart(document.getElementById(str));
+               chart.draw(data, options);
+
+               options = {
+                    title: 'Speed',
+                    fontSize: "16",
+                    pieHole: 0.4,
+                    pieSliceText: 'none',
+                    legend: 'none',
+                    slices: {
+                         0: { color: isOpp ? '#ff0000':'#3366cc' },
+                         1: { color: 'transparent' }
+                    },
+                    pieSliceBorderColor : "#ccc"
+               }
+               data = google.visualization.arrayToDataTable([
+                    ['', ''],
+                    ['', player.skill.speed],
+                    ['', 7-player.skill.speed],
+               ]);
+               str = isOpp == true ? "speed2" : "speed1";               
+               chart = new google.visualization.PieChart(document.getElementById(str));
+               chart.draw(data, options);
+
+               options = {
+                    title: 'Strength',
+                    fontSize: "16",
+                    pieHole: 0.4,
+                    pieSliceText: 'none',
+                    legend: 'none',
+                    slices: {
+                         0: { color: isOpp ? '#ff0000':'#3366cc' },
+                         1: { color: 'transparent' }
+                    },
+                    pieSliceBorderColor : "#ccc"
+               }
+               data = google.visualization.arrayToDataTable([
+                    ['', ''],
+                    ['', player.skill.strength],
+                    ['', 7-player.skill.strength],
+               ]);
+               str = isOpp == true ? "str2" : "str1";               
+               chart = new google.visualization.PieChart(document.getElementById(str));
+               chart.draw(data, options);
+
+               options = {
+                    title: 'Gadget Reliance',
+                    fontSize: "16",
+                    pieHole: 0.4,
+                    pieSliceText: 'none',
+                    legend: 'none',
+                    slices: {
+                         0: { color: isOpp ? '#ff0000':'#3366cc' },
+                         1: { color: 'transparent' }
+                    },
+                    pieSliceBorderColor : "#ccc"
+               }
+               data = google.visualization.arrayToDataTable([
+                    ['', ''],
+                    ['', 6-player.skill.gizmos],
+                    ['', player.skill.gizmos],
+               ]);
+               str = isOpp == true ? "gizmo2" : "gizmo1"; 
+               chart = new google.visualization.PieChart(document.getElementById(str));
                chart.draw(data, options);
           }
      </script>
