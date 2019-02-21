@@ -5,11 +5,13 @@ let allPlayers = require("../data/players.js");
 let apiRouter = express.Router();
 
 apiRouter.get("/api/getHeroes", function(req, res){
+     console.log(allPlayers)
      return res.json(allPlayers);
 });
 
 apiRouter.get("/api/getOpponent/:oppnent", function(req, res){
-     let charVals, char, oppList,diffenetial, curOpp;
+     let charVals, char, oppList,diffenetial, curOpp,listOpp;
+     listOpp =[];
      charVals = req.params.oppnent.split("&");
      char = allPlayers.filter( o => {
           return o.alias == charVals[0] && o.name == charVals[1];
@@ -24,7 +26,15 @@ apiRouter.get("/api/getOpponent/:oppnent", function(req, res){
           })
      }
      cruOpp = oppList[0];
-     diffenetial = 56;
+     diffenetial = 100;
+     oppList.forEach( o =>{
+          let temp = compareSkills(char.skill, o.skill);
+          if(Math.abs(temp) <= 4){
+               listOpp.push(o);
+          }
+     })
+     console.log(listOpp);
+     
      oppList.forEach( o => {
           let temp = compareSkills(char.skill, o.skill);
           if(Math.abs(temp) < Math.abs(diffenetial)){
@@ -34,7 +44,8 @@ apiRouter.get("/api/getOpponent/:oppnent", function(req, res){
                diffenetial = temp;
                curOpp = o;
           }
-     }) 
+     })
+
      function compareSkills(skill1, skill2){
           let s1 = sum(skill1);
           let s2 = sum(skill2);
@@ -44,7 +55,7 @@ apiRouter.get("/api/getOpponent/:oppnent", function(req, res){
                return Object.keys(obj).reduce((sum,key)=>sum+parseFloat(obj[key]||0),0);
           }
      }
-     return res.json({char:char, curOpp:curOpp});
+     return res.json({char:char, curOpp:curOpp, list:listOpp});
 });
 
 apiRouter.post("/api/addhero", function(req, res){
