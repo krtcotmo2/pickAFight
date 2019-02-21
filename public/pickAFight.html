@@ -9,79 +9,7 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
      <link rel="stylesheet" href="../assets/css/style.css" />
      <style>
-          .col {
-               min-height: 200px;
-               border: 1px solid #ccc;
-          }
-
-          .hidden {
-               display: none;
-          }
-
-          .playerImg,
-          .playerImg2 {
-               width: 100%;
-          }
-
-          .charts {
-               position: absolute;
-               width: 100%;
-               top: 0px;
-               left: 0px;
-               background: rgba(255, 255, 255, 0.9);
-               min-height: 100%;
-          }
-
-          .col {
-               position: relative;
-          }
-
-          .dur rect {
-               fill-opacity: 0;
-          }
-
-          g rect {
-               fill-opacity: 0 !important;
-               text-align: center !important;
-          }
-
-          .pie {
-               margin: 20px;
-          }
-
-          .pie text {
-               font-family: "Verdana";
-               fill: #888;
-          }
-
-          .pie .name-text {
-               font-size: 1em;
-          }
-
-          .pie .value-text {
-               font-size: 3em;
-          }
-          .dur{
-               width: calc(50% - 2px); 
-               margin:0 auto;
-               display:inline;
-          }
-          .dur>div{
-               display: inline-block;
-          }
-          .smallPieHolder{
-               padding-bottom:14px;
-          }
-          .smallPieHolder>div{
-               display: inline;
-          }
-          .smallPieHolder svg{
-               margin:0px 5px
-          }
-          .charHolder:hover{
-               border:2px solid #ccc;
-               cursor:pointer;
-          }
+          
      </style>
 </head>
 
@@ -172,13 +100,17 @@
                     });
                });
 
-               $(".col").mouseover(function () {
+               $(".col").eq(1).mouseover(function () {
                     $(".player1").removeClass("hidden");
-                   // $(".player2").removeClass("hidden");
+                    if($(".multiple2").hasClass("hidden")){
+                         $(".player2").removeClass("hidden");
+                    }
                })
-               $(".col").mouseout(function () {
+               $(".col").eq(1).mouseout(function () {
                     $(".player1").addClass("hidden");
-                   // $(".player2").addClass("hidden");
+                    if($(".multiple2").hasClass("hidden")){
+                         $(".player2").addClass("hidden");
+                    }
                })
           });
 
@@ -200,23 +132,20 @@
           $("#btnSubmit").on("click", function () {
                let colWidth = $(".col").width();
 
-               let getUrl = `/api/getOpponent/${$("#cboxhero option:selected").text()}&${$(".labName").text()}&${$("#chkFightAny").is(':checked')}`;
-               console.log(getUrl)
+               let getUrl = `/api/getOpponents/${$("#cboxhero option:selected").text()}&${$(".labName").text()}&${$("#chkFightAny").is(':checked')}`;
                $.ajax({
                     url: getUrl,
                     method: "GET"
                }).then(function (response) {
-                    $(".labName2").text(response.curOpp.name);
-                    $(".playerImg2").attr("src", "");
-                    //$(".playerImg2").attr("src",response.curOpp.img);
-                    $(".charScreen2").removeClass("hidden");
+                    
+                    $(".playerImg2").attr("src", "");                    
                     $(".multiple2").html("");
                     $(".multiple2").removeClass("hidden");
-                    
+                    $(".charScreen2").addClass("hidden");
                     popCharts(response.char, $(".player1"));
-                    //popCharts(response.curOpp, $(".player2"), true);
                     response.list.forEach(o => {
                          let charHolder = $("<div class='charHolder'>");
+                         charHolder.data("char", o.name); 
                          charHolder.append(`<p>${o.alias}</p>`);
                          let parts = Object.keys(o.skill);
                          let openDiv = $("<div class='smallPieHolder'>");
@@ -234,17 +163,28 @@
           function drawChart(skill, ind, allSkill) {
 
                function defaultColors(n) {
-               var colores_g = ["#007bff", "#ffffff"];
+               var colores_g = ["#ff0000", "#ffffff"];
                     return colores_g[n % colores_g.length];
                }
 
 
                let aDiv = $("<div>");
                aDiv.width(($(".col").width()-80)/7)
-               var data = [
-                    { name: "", value: allSkill[skill] },
-                    { name: "", value: 7 - allSkill[skill] }
-               ];
+               var data;
+               if(skill == "gizmos"){
+                    data = [
+                         { name: "", value: 6 - allSkill[skill] },
+                         { name: "", value: allSkill[skill] }
+                    ];
+               }else{
+                    data = [
+                         { name: "", value: allSkill[skill] },
+                         { name: "", value: 7 - allSkill[skill] }
+                    ];
+               }
+               
+               
+               
 
                var width = aDiv.width();
                var height = aDiv.width() + 30;
@@ -500,6 +440,21 @@
                chart = new google.visualization.PieChart(document.getElementById(str));
                chart.draw(data, options);
           }
+     
+          $(document).on ("click", ".charHolder", function(evt){
+               let getUrl = `/api/getOpponent/${$(this).data("char")}`;               
+               $.ajax({
+                    url: getUrl,
+                    method: "GET"
+               }).then(function (response) {
+                    $(".labName2").text(response.char.name);
+                    $(".charScreen2").removeClass("hidden");
+                    $(".player2").remove("hidden");
+                    $(".multiple2").addClass("hidden");
+                    $(".playerImg2").attr("src",response.char.img);
+                    popCharts(response.char, $(".player2"), true);
+               });
+          })
      </script>
 </body>
 
