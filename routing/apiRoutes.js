@@ -70,6 +70,7 @@ apiRouter.post("/api/addhero", function(req, res){
      if(char.length > 0){
           return res.json({saved:false, reason:"Character Exists"});
      }
+     console.log(hero)
      allPlayers.push(hero);
      return res.json({saved:true, reason:"Character Added"});
  });
