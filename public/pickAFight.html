@@ -288,8 +288,8 @@
                };
                let data = google.visualization.arrayToDataTable([
                     ['', ''],
-                    ['', player.skill.durability],
-                    ['', 7 - player.skill.durability],
+                    ['', parseInt(player.skill.durability)],
+                    ['', 7 - parseInt(player.skill.durability)],
                ]);
                let str = isOpp == true ? "dur2" : "dur1"
                let chart = new google.visualization.PieChart(document.getElementById(str));
@@ -314,8 +314,8 @@
                }
                data = google.visualization.arrayToDataTable([
                     ['', ''],
-                    ['', player.skill.energy],
-                    ['', 7 - player.skill.energy],
+                    ['', parseInt(player.skill.energy)],
+                    ['', 7 - parseInt(player.skill.energy)],
                ]);
                str = isOpp == true ? "energy2" : "energy1";
                chart = new google.visualization.PieChart(document.getElementById(str));
@@ -340,8 +340,8 @@
                }
                data = google.visualization.arrayToDataTable([
                     ['', ''],
-                    ['', player.skill.fighting],
-                    ['', 7 - player.skill.fighting],
+                    ['', parseInt(player.skill.fighting)],
+                    ['', 7 - parseInt(player.skill.fighting)],
                ]);
                str = isOpp == true ? "fight2" : "fight1";
                chart = new google.visualization.PieChart(document.getElementById(str));
@@ -366,8 +366,8 @@
                }
                data = google.visualization.arrayToDataTable([
                     ['', ''],
-                    ['', player.skill.intel],
-                    ['', 7 - player.skill.intel],
+                    ['', parseInt(player.skill.intel)],
+                    ['', 7 - parseInt(player.skill.intel)],
                ]);
                str = isOpp == true ? "intel2" : "intel1";
                chart = new google.visualization.PieChart(document.getElementById(str));
@@ -392,8 +392,8 @@
                }
                data = google.visualization.arrayToDataTable([
                     ['', ''],
-                    ['', player.skill.speed],
-                    ['', 7 - player.skill.speed],
+                    ['', parseInt(player.skill.speed)],
+                    ['', 7 - parseInt(player.skill.speed)],
                ]);
                str = isOpp == true ? "speed2" : "speed1";
                chart = new google.visualization.PieChart(document.getElementById(str));
@@ -418,8 +418,8 @@
                }
                data = google.visualization.arrayToDataTable([
                     ['', ''],
-                    ['', player.skill.strength],
-                    ['', 7 - player.skill.strength],
+                    ['', parseInt(player.skill.strength)],
+                    ['', 7 - parseInt(player.skill.strength)],
                ]);
                str = isOpp == true ? "str2" : "str1";
                chart = new google.visualization.PieChart(document.getElementById(str));
@@ -444,8 +444,8 @@
                }
                data = google.visualization.arrayToDataTable([
                     ['', ''],
-                    ['', 6 - player.skill.gizmos],
-                    ['', player.skill.gizmos],
+                    ['', 6 - parseInt(player.skill.gizmos)],
+                    ['', parseInt(player.skill.gizmos)],
                ]);
                str = isOpp == true ? "gizmo2" : "gizmo1";
                chart = new google.visualization.PieChart(document.getElementById(str));
