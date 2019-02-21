@@ -5,11 +5,17 @@ let allPlayers = require("../data/players.js");
 let apiRouter = express.Router();
 
 apiRouter.get("/api/getHeroes", function(req, res){
-     console.log(allPlayers)
      return res.json(allPlayers);
 });
-
 apiRouter.get("/api/getOpponent/:oppnent", function(req, res){
+     let charVals, char;
+     charVals = req.params.oppnent;
+     char = allPlayers.filter( o => {
+          return o.name == charVals;
+     })[0];
+     return res.json({char:char});
+})
+apiRouter.get("/api/getOpponents/:oppnent", function(req, res){
      let charVals, char, oppList,diffenetial, curOpp,listOpp;
      listOpp =[];
      charVals = req.params.oppnent.split("&");
@@ -33,8 +39,6 @@ apiRouter.get("/api/getOpponent/:oppnent", function(req, res){
                listOpp.push(o);
           }
      })
-     console.log(listOpp);
-     
      oppList.forEach( o => {
           let temp = compareSkills(char.skill, o.skill);
           if(Math.abs(temp) < Math.abs(diffenetial)){

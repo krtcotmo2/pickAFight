@@ -5,3 +5,83 @@ body{
 .rounded{
      border-radius: 0.5em !important;
 }
+
+
+
+/* PICK A FIGHT PAGE */
+.col {
+     min-height: 200px;
+     border: 1px solid #ccc;
+}
+
+.hidden {
+     display: none;
+}
+
+.playerImg,
+.playerImg2 {
+     width: 100%;
+}
+
+.charts {
+     position: absolute;
+     width: 100%;
+     top: 0px;
+     left: 0px;
+     background: rgba(255, 255, 255, 0.9);
+     min-height: 100%;
+}
+
+.col {
+     position: relative;
+     background: #fff;
+}
+
+.dur rect {
+     fill-opacity: 0;
+}
+
+g rect {
+     fill-opacity: 0 !important;
+     text-align: center !important;
+}
+
+.pie {
+     margin: 20px;
+}
+
+.pie text {
+     font-family: "Verdana";
+     fill: #888;
+}
+
+.pie .name-text {
+     font-size: 1em;
+}
+
+.pie .value-text {
+     font-size: 3em;
+}
+.dur{
+     width: calc(50% - 2px); 
+     margin:0 auto;
+     display:inline;
+}
+.dur>div{
+     display: inline-block;
+}
+.smallPieHolder{
+     padding-bottom:14px;
+}
+.smallPieHolder>div{
+     display: inline;
+}
+.smallPieHolder svg{
+     margin:0px 5px
+}
+.charHolder{padding:5px;}
+.charHolder:hover{
+     border:2px solid #ccc;
+     cursor:pointer;
+     padding:3px;
+}
