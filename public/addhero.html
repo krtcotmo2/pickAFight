@@ -14,10 +14,23 @@
 </head>
 
 <body>
-     <div class="container my-5">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">Marvel Fight Night</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                      <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="/addhero#">Add Fighter</a>
+                        <a class="nav-item nav-link" href="/pickAFight">Pick a Fight</a>
+                      </div>
+                    </div>
+                  </nav>
+     <div class="container my-5 col-10 col-sm-8 col-lg-6 rounded bg-primary p-4">
           <form>
                <div class="form-group">
-                    <label for="tboxName">Name/Idnetity</label>
+                    <label for="tboxName">Name/Identity</label>
                     <input type="text" class="form-control" id="tboxName" aria-describedby="emailHelp"
                          placeholder="Steve Rogers" required>
                </div>
@@ -129,20 +142,8 @@
                     <input type="text" class="form-control" id="tboxFImg" aria-describedby="emailHelp"
                          placeholder="">
                </div>
-               <div class="form-group">
-                    <label for="tboxAlias">Profile Image of Hero</label>
-                    <input type="text" class="form-control" id="tboxPImg" aria-describedby="emailHelp"
-                         placeholder="">
-               </div>
-               <div class="form-group">
-                    <label for="tboxAlias">Profile is Facing Right or Left?</label>
-                    <select class="form-control" id="cboxProf">
-                         <option value="0"></option>
-                         <option value="1">Right</option>
-                         <option value="2">Left</option>
-                    </select>
-               </div>
-               <button id="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
+               
+               <button id="btnSubmit" type="submit" class="btn btn-light">Submit</button>
           </form>
 
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
