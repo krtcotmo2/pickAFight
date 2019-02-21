@@ -29,8 +29,6 @@ let players = [
                gizmos:2
           },
           side:1,
-          profImg:"url to image",
-          profDir:1,
           img:"http://www.stickpng.com/assets/images/58569c7a4f6ae202fedf2751.png"
      },
      {
@@ -46,8 +44,6 @@ let players = [
                gizmos:5
           },
           side:1,
-          profImg:"url to image",
-          profDir:1,
           img:"https://www.writeups.org/wp-content/uploads/Silver-Surfer-Marvel-Comics-Norrin-Radd-g.jpg"
      },
      {
@@ -63,8 +59,6 @@ let players = [
                gizmos:1
           },
           side:2,
-          profImg:"url to image",
-          profDir:1,
           img:"https://i.pinimg.com/originals/14/4a/5c/144a5c47383e161fd82ae7ae67d89783.png"
      },
      {
@@ -80,8 +74,6 @@ let players = [
                gizmos:4
           },
           side:2,
-          profImg:"url to image",
-          profDir:1,
           img:"https://classicmarvelforever.com/images/doctor_doom.gif"
      },
      {
@@ -94,11 +86,9 @@ let players = [
                intel:4,
                speed:2,
                strength:3,
-               gizmos:5
+               gizmos:3
           },
           side:2,
-          profImg:"url to image",
-          profDir:1,
           img:"https://i.pinimg.com/originals/23/d3/1f/23d31f503a74f3b6ba9e5239a79d3b51.jpg"
      },
      {
@@ -114,10 +104,28 @@ let players = [
                gizmos:6
           },
           side:2,
-          profImg:"url to image",
-          profDir:1,
           img:"https://vignette.wikia.nocookie.net/vsbattles/images/2/2b/Batroc_the_leaper_by_ratatrampa87-d7c4rew.png/revision/latest/scale-to-width-down/333?cb=20170625204110"
+     },
+     {
+          name : "Clint Barton",
+          alias : "Hawkeye",
+          skill:{
+               durability: 2,
+               energy: 1,
+               fighting:4,
+               intel:2,
+               speed:2,
+               strength:2,
+               gizmos:1
+          },
+          side:1,
+          img:"https://i.stack.imgur.com/VZbl8.jpg"
      }
+     
+     
+    
+
+
 ];
 
 module.exports = players;
