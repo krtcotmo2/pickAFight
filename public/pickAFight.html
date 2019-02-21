@@ -188,8 +188,8 @@
                let data;
                if(skill == "gizmos"){
                     data = [
-                         { name: "", value: 6 - allSkill[skill] },
-                         { name: "", value: allSkill[skill] }
+                         { name: "", value: 7 - allSkill[skill] },
+                         { name: "", value: allSkill[skill]-1 }
                     ];
                }else{
                     data = [
@@ -445,8 +445,8 @@
                }
                data = google.visualization.arrayToDataTable([
                     ['', ''],
-                    ['', 6 - parseInt(player.skill.gizmos)],
-                    ['', parseInt(player.skill.gizmos)],
+                    ['', 7 - parseInt(player.skill.gizmos)],
+                    ['', parseInt(player.skill.gizmos)-1],
                ]);
                str = isOpp == true ? "gizmo2" : "gizmo1";
                chart = new google.visualization.PieChart(document.getElementById(str));
