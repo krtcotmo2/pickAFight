@@ -14,9 +14,23 @@
 </head>
 
 <body>
-     <div class="container my-2">
-          <div class="row col-11 mx-auto">
-               <h3>Choose your hero</h3>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">Marvel Fight Night</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                      <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="/addhero">Add Fighter</a>
+                        <a class="nav-item nav-link" href="/pickAFight">Pick a Fight</a>
+                      </div>
+                    </div>
+                  </nav>
+     <div class="container my-2 ">
+          
+          <div class="row col-11 mx-auto bg-primary p-5">
+               <h3 class="text-white">Choose your identity</h3>
                <select class="form-control" id="cboxhero">
                     <option value="0"></option>
                </select>
@@ -27,7 +41,7 @@
                     </label>
                </div>
                <div class="my-2">
-                    <button id="btnSubmit" type="submit" class="btn btn-primary">Find Opponent</button>
+                    <button id="btnSubmit" type="submit" class="btn btn-light">Find Opponent</button>
                </div>
           </div>
      </div>
@@ -163,14 +177,14 @@
           function drawChart(skill, ind, allSkill) {
 
                function defaultColors(n) {
-               var colores_g = ["#ff0000", "#ffffff"];
+               let colores_g = ["#ff0000", "#ffffff"];
                     return colores_g[n % colores_g.length];
                }
 
 
                let aDiv = $("<div>");
                aDiv.width(($(".col").width()-80)/7)
-               var data;
+               let data;
                if(skill == "gizmos"){
                     data = [
                          { name: "", value: 6 - allSkill[skill] },
@@ -182,36 +196,33 @@
                          { name: "", value: 7 - allSkill[skill] }
                     ];
                }
-               
-               
-               
 
-               var width = aDiv.width();
-               var height = aDiv.width() + 30;
-               var thickness = aDiv.width()*.3;
+               let width = aDiv.width();
+               let height = aDiv.width() + 30;
+               let thickness = aDiv.width()*.3;
 
 
-               var radius = aDiv.width() / 2;
-               var color = defaultColors;
+               let radius = aDiv.width() / 2;
+               let color = defaultColors;
 
-               var svg = d3.select(aDiv[0])
+               let svg = d3.select(aDiv[0])
                     .append('svg')
                     .attr('class', 'pie')
                     .attr('width', width)
                     .attr('height', height);
 
-               var g = svg.append('g')
+               let g = svg.append('g')
                     .attr('transform', 'translate(' + (width / 2) + ',' + ((height-30) / 2) + ')');
 
-               var arc = d3.arc()
+               let arc = d3.arc()
                     .innerRadius(radius - thickness)
                     .outerRadius(radius);
 
-               var pie = d3.pie()
+               let pie = d3.pie()
                     .value(function (d) { return d.value; })
                     .sort(null);
 
-               var path = g.selectAll('path')
+               let path = g.selectAll('path')
                     .data(pie(data))
                     .enter()
                     .append("g")
@@ -257,7 +268,7 @@
           function popCharts(player, cont, isOpp = false) {
                let durHlder = $(cont).find(".dur");
                let colWidth = $(".col").width() / 2;
-               var options = {
+               let options = {
                     title: 'Durability',
                     pieHole: 0.4,
                     pieSliceText: 'none',
@@ -275,13 +286,13 @@
                     }
 
                };
-               var data = google.visualization.arrayToDataTable([
+               let data = google.visualization.arrayToDataTable([
                     ['', ''],
                     ['', player.skill.durability],
                     ['', 7 - player.skill.durability],
                ]);
                let str = isOpp == true ? "dur2" : "dur1"
-               var chart = new google.visualization.PieChart(document.getElementById(str));
+               let chart = new google.visualization.PieChart(document.getElementById(str));
                chart.draw(data, options);
 
                options = {
