@@ -40,7 +40,7 @@
                          Find closest match regardless of allegiance
                     </label>
                </div>
-               <p>After you click the Find Opponent button, you will be shown a list of most suitable opponents that closely match your skill. Scroll over each chart to see the exact skill. Click on the character to choose them as an opponent. </p>
+               <p style="color:white;">After you click the Find Opponent button, you will be shown a list of most suitable opponents that closely match your skill. Scroll over each chart to see the exact skill. Click on the character to choose them as an opponent. </p>
                <div class="my-2">
                     <button id="btnSubmit" type="submit" class="btn btn-light">Find Opponent</button>
                </div>
@@ -137,6 +137,7 @@
                let char = charArray.find(o => {
                     return o.alias == $("#cboxhero option:selected").text()
                });
+               $(".multiple2").addClass("hidden");
                $(".labName").text(char.name);
                $(".playerImg").attr("src", "");
                $(".playerImg").attr("src", char.img);
@@ -152,7 +153,6 @@
                     url: getUrl,
                     method: "GET"
                }).then(function (response) {
-                    
                     $(".playerImg2").attr("src", "");                    
                     $(".multiple2").html("");
                     $(".multiple2").removeClass("hidden");
