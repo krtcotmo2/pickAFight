@@ -81,13 +81,12 @@ let charArray = [];
                });
           });
 
+          //D3 version of charts
           function drawChart(skill, ind, allSkill) {
-
                function defaultColors(n) {
                let colores_g = ["#ff0000", "#ffffff"];
                     return colores_g[n % colores_g.length];
                }
-
 
                let aDiv = $("<div>");
                aDiv.width(($(".col").width()-80)/7)
@@ -141,7 +140,7 @@ let charArray = [];
                aDiv.attr('title', getCatName(skill))
                return aDiv;
           } 
-
+          //gets name from input
           function getCatName(arg){
                let ret = "";
                switch(arg){
@@ -172,166 +171,51 @@ let charArray = [];
                return ret;
           }
 
+          function getDiv(title, isOpp){
+               let ret = "";
+               switch(title){
+                    case "durability":
+                         ret = isOpp ? "dur2":"dur1"; 
+                         break;
+                    case "energy":
+                         ret = isOpp ? "energy2":"energy1"; 
+                         break;
+                    case "fighting":
+                         ret = isOpp ? "fight2":"fight1"; 
+                         break;
+                    case "intel":
+                         ret = isOpp ? "intel2":"intel1"; 
+                         break;
+                    case "speed":
+                         ret = isOpp ? "speed2":"speed1"; 
+                         break;
+                    case "strength":
+                         ret = isOpp ? "str2":"str1"; 
+                         break;
+                    case "gizmos":
+                         ret = isOpp ? "gizmo2":"gizmo1"; 
+                         break;
+                    default:
+                         break;
+               }
+               return ret;
+          }
+
           function popCharts(player, cont, isOpp = false) {
-               let durHlder = $(cont).find(".dur");
+               let skillArray = Object.keys(player.skill);
                let colWidth = $(".col").width() / 2;
-               let options = {
-                    title: 'Durability',
-                    pieHole: 0.4,
-                    pieSliceText: 'none',
-                    fontSize: "16",
-                    legend: 'none',
-                    slices: {
-                         0: { color: isOpp ? '#ff0000' : '#3366cc' },
-                         1: { color: 'transparent' }
-                    },
-                    pieSliceBorderColor: "#ccc",
-                    width: colWidth,
-                    height: 144,
-                    'tooltip' : {
-                    trigger: 'none'
-                    }
-
-               };
-               let data = google.visualization.arrayToDataTable([
-                    ['', ''],
-                    ['', parseInt(player.skill.durability)],
-                    ['', 7 - parseInt(player.skill.durability)],
-               ]);
-               let str = isOpp == true ? "dur2" : "dur1"
-               let chart = new google.visualization.PieChart(document.getElementById(str));
-               chart.draw(data, options);
-
-               options = {
-                    title: 'Energy',
-                    fontSize: "16",
-                    pieHole: 0.4,
-                    pieSliceText: 'none',
-                    legend: 'none',
-                    slices: {
-                         0: { color: isOpp ? '#ff0000' : '#3366cc' },
-                         1: { color: 'transparent' }
-                    },
-                    pieSliceBorderColor: "#ccc", 
-                    width: colWidth,
-                    height: 144,
-                    'tooltip' : {
-                    trigger: 'none'
-                    }
-               }
-               data = google.visualization.arrayToDataTable([
-                    ['', ''],
-                    ['', parseInt(player.skill.energy)],
-                    ['', 7 - parseInt(player.skill.energy)],
-               ]);
-               str = isOpp == true ? "energy2" : "energy1";
-               chart = new google.visualization.PieChart(document.getElementById(str));
-               chart.draw(data, options);
-
-               options = {
-                    title: 'Combat Skills',
-                    fontSize: "16",
-                    pieHole: 0.4,
-                    pieSliceText: 'none',
-                    legend: 'none',
-                    slices: {
-                         0: { color: isOpp ? '#ff0000' : '#3366cc' },
-                         1: { color: 'transparent' }
-                    },
-                    pieSliceBorderColor: "#ccc", 
-                    width: colWidth,
-                    height: 144,
-                    'tooltip' : {
-                    trigger: 'none'
-                    }
-               }
-               data = google.visualization.arrayToDataTable([
-                    ['', ''],
-                    ['', parseInt(player.skill.fighting)],
-                    ['', 7 - parseInt(player.skill.fighting)],
-               ]);
-               str = isOpp == true ? "fight2" : "fight1";
-               chart = new google.visualization.PieChart(document.getElementById(str));
-               chart.draw(data, options);
-
-               options = {
-                    title: 'Intelligence',
-                    fontSize: "16",
-                    pieHole: 0.4,
-                    pieSliceText: 'none',
-                    legend: 'none',
-                    slices: {
-                         0: { color: isOpp ? '#ff0000' : '#3366cc' },
-                         1: { color: 'transparent' }
-                    },
-                    pieSliceBorderColor: "#ccc", 
-                    width: colWidth,
-                    height: 144,
-                    'tooltip' : {
-                    trigger: 'none'
-                    }
-               }
-               data = google.visualization.arrayToDataTable([
-                    ['', ''],
-                    ['', parseInt(player.skill.intel)],
-                    ['', 7 - parseInt(player.skill.intel)],
-               ]);
-               str = isOpp == true ? "intel2" : "intel1";
-               chart = new google.visualization.PieChart(document.getElementById(str));
-               chart.draw(data, options);
-
-               options = {
-                    title: 'Speed',
-                    fontSize: "16",
-                    pieHole: 0.4,
-                    pieSliceText: 'none',
-                    legend: 'none',
-                    slices: {
-                         0: { color: isOpp ? '#ff0000' : '#3366cc' },
-                         1: { color: 'transparent' }
-                    },
-                    pieSliceBorderColor: "#ccc", 
-                    width: colWidth,
-                    height: 144,
-                    'tooltip' : {
-                    trigger: 'none'
-                    }
-               }
-               data = google.visualization.arrayToDataTable([
-                    ['', ''],
-                    ['', parseInt(player.skill.speed)],
-                    ['', 7 - parseInt(player.skill.speed)],
-               ]);
-               str = isOpp == true ? "speed2" : "speed1";
-               chart = new google.visualization.PieChart(document.getElementById(str));
-               chart.draw(data, options);
-
-               options = {
-                    title: 'Strength',
-                    fontSize: "16",
-                    pieHole: 0.4,
-                    pieSliceText: 'none',
-                    legend: 'none',
-                    slices: {
-                         0: { color: isOpp ? '#ff0000' : '#3366cc' },
-                         1: { color: 'transparent' }
-                    },
-                    pieSliceBorderColor: "#ccc", 
-                    width: colWidth,
-                    height: 144,
-                    'tooltip' : {
-                    trigger: 'none'
-                    }
-               }
-               data = google.visualization.arrayToDataTable([
-                    ['', ''],
-                    ['', parseInt(player.skill.strength)],
-                    ['', 7 - parseInt(player.skill.strength)],
-               ]);
-               str = isOpp == true ? "str2" : "str1";
-               chart = new google.visualization.PieChart(document.getElementById(str));
-               chart.draw(data, options);
-
+               skillArray.forEach( o => {
+                    let options = getOptions(o, isOpp, colWidth)
+                    let str = getDiv(o, isOpp);
+                    let data = google.visualization.arrayToDataTable([
+                         ['', ''],
+                         ['', parseInt(player.skill[o])],
+                         ['', 7 - parseInt(player.skill[o])],
+                    ]);
+                    let chart = new google.visualization.PieChart(document.getElementById(str));
+                    chart.draw(data, options);
+               });
+              
                options = {
                     title: 'Gadget Reliance',
                     fontSize: "16",
@@ -357,8 +241,31 @@ let charArray = [];
                str = isOpp == true ? "gizmo2" : "gizmo1";
                chart = new google.visualization.PieChart(document.getElementById(str));
                chart.draw(data, options);
+               
           }
      
+
+          function getOptions(title, isOpp, colWidth){
+               let options = {
+                    title: getCatName(title),
+                    pieHole: 0.4,
+                    pieSliceText: 'none',
+                    fontSize: "16",
+                    legend: 'none',
+                    slices: {
+                         0: { color: isOpp ? '#ff0000' : '#3366cc' },
+                         1: { color: 'transparent' }
+                    },
+                    pieSliceBorderColor: "#ccc",
+                    width: colWidth,
+                    height: 144,
+                    'tooltip' : {
+                         trigger: 'none'
+                    }
+               }
+               return options;
+          }
+
           $(document).on ("click", ".charHolder", function(evt){
                let getUrl = `/api/getOpponent/${$(this).data("char")}`;               
                $.ajax({
