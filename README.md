@@ -6,4 +6,4 @@ In this example you are supposed to be a super powered person who has lost one t
 
 In addition I also allow a hero to fight a hero or a viallian to fight a villian. 
 
-https://forthebadge.com/images/badges/uses-html.svg
+[![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)
