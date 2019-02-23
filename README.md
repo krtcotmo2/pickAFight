@@ -5,3 +5,5 @@ The concept of a dating app was not appealing to me. I turned the projec tinto s
 In this example you are supposed to be a super powered person who has lost one too many fights. You need a win so you come to our app to help pick an opponenet that you match up with. You cna enter in your stats base don the Marvel Comic Power rankings. I added another category. Noramlly the scale is from 1-7 with 1 being the worst and 7 being the best. y added category actually works in reverse where 1 in best and 7 is the worst. This foreced me to hadle rankingisn for the "Gadget Reliance" category differenlty. 
 
 In addition I also allow a hero to fight a hero or a viallian to fight a villian. 
+
+https://forthebadge.com/images/badges/uses-html.svg
