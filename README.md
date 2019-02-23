@@ -7,8 +7,10 @@ In this example you are supposed to be a super powered person who has lost one t
 In addition I also allow a hero to fight a hero or a villain to fight a villain. 
 
 [![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)
+
 The Public folder holds the html files that are used for the three main pages. Bootstrap powers the layouts.
 
 [![forthebadge](https://forthebadge.com/images/badges/uses-js.svg)](https://forthebadge.com)
+
 Ndoe JS and express drive the backed server functionality with the routing files in the routing folder.
 The graphs are built using google charts and d3 javascript libraries. The data is in a data.js file int eh data folder.
