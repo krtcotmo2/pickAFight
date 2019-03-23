@@ -13,4 +13,4 @@ The Public folder holds the html files that are used for the three main pages. B
 [![forthebadge](https://forthebadge.com/images/badges/uses-js.svg)](https://forthebadge.com)
 
 Ndoe JS and express drive the backed server functionality with the routing files in the routing folder.
-The graphs are built using google charts and d3 javascript libraries. The data is in a data.js file int eh data folder.
+The graphs are built using google charts and d3 javascript libraries. The data is in a data.js file in the data folder.
