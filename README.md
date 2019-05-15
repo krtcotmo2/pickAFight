@@ -1,6 +1,6 @@
 # Marvel Fight Night
 
-The concept of a dating app was not appealing to me. I turned the project into something very similar to a dating app but with a slight twist. I used the cam concept about compatibility. You would rank something on various properties in varying scales. From there you could preform some checks for close matches. 
+The concept of a dating app was not appealing to me. I turned the project into something very similar to a dating app but with a slight twist. I used the same concept about compatibility but not in a I like you manner. You would rank something on various properties in varying scales. From there you could preform some checks for close matches. 
 
 In this example you are supposed to be a super powered person who has lost one too many fights. You need a win so you come to our app to help pick an opponent that you match up with. You can enter in your stats base don the Marvel Comic Power rankings. I added another category. Normally the scale is from 1-7 with 1 being the worst and 7 being the best. y added category actually works in reverse where 1 in best and 7 is the worst. This forced me to handle rankings for the "Gadget Reliance" category differently. 
 
