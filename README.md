@@ -1,4 +1,8 @@
 # Marvel Fight Night
+![alt text](https://img.shields.io/badge/uses-Node-brightgreen.svg) ![alt text](https://img.shields.io/badge/uses-Express-brightgreen.svg) 
+
+![alt text](https://img.shields.io/badge/uses-jQuery-blue.svg)  ![alt text](https://img.shields.io/badge/uses-D3-blue.svg) ![alt text](https://img.shields.io/badge/uses-Bootstrap-blue.svg)
+
 
 The concept of a dating app was not appealing to me. I turned the project into something very similar to a dating app but with a slight twist. I used the same concept about compatibility but not in a I like you manner. You would rank something on various properties in varying scales. From there you could preform some checks for close matches. 
 
