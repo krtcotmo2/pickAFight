@@ -19,7 +19,7 @@ The graphs are built using google charts and d3 javascript libraries. The data i
 
 # Main Project
 
-Here I played around with Node and Express. I was not particularly concerned about keeping persistent data so I uses a js file to store and array of characters and users would add to the array. Since the array was on the server side, as long as the server did not shut down, the data would persist.
+Here I played around with Node and Express. I was not particularly concerned about keeping persistent data so I uses a js file to store an initial array of characters and users would add to the array. Since the array was on the server side, as long as the server did not shut down, the data would persist.
 
 Express handled the few routes I had in the application. It also handles the API's which queried the array on the server. The searches in the queries made a comparison other users overs skill point rating and that of all the people in the array. It would look to find the opponents that closely matched the score of the user. It would return all values bac to the front end in the form of an array of objects.
 
